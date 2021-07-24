@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "A2S", "A2S.csproj", "{07A3B787-2724-4CA3-AE19-12E0AE129C58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "A2S", "A2S\A2S.csproj", "{07A3B787-2724-4CA3-AE19-12E0AE129C58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A2S.Tests", "..\A2STests\A2S.Tests.csproj", "{44D410D8-1B8F-4CAD-873C-B200F0ABCA08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A2S.Tests", "A2S.Tests\A2S.Tests.csproj", "{44D410D8-1B8F-4CAD-873C-B200F0ABCA08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
