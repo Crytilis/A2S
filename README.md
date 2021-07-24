@@ -1,4 +1,4 @@
-[![Master](https://github.com/Crytilis/A2S/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/Crytilis/A2S/actions/workflows/main.yml) [![Publish Packages](https://github.com/Crytilis/A2S/actions/workflows/publish.yml/badge.svg?branch=master&event=push)](https://github.com/Crytilis/A2S/actions/workflows/publish.yml)
+![Master](https://github.com/Crytilis/A2S/actions/workflows/main.yml/badge.svg?branch=master) [![Publish Packages](https://github.com/Crytilis/A2S/actions/workflows/publish.yml/badge.svg?branch=master&event=push)](https://www.nuget.org/packages/A2S/)
 ## A2S
 A .NET Implementation of Steam's A2S Source Server Queries running on NET5. 
 
