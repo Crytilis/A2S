@@ -49,6 +49,7 @@ namespace A2S
                 }
                 catch (Exception)
                 {
+                    udpClient.Close();
                     return null;
                 }
             }
