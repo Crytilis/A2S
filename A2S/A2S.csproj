@@ -5,11 +5,14 @@
     <AssemblyName>A2S</AssemblyName>
     <RootNamespace>A2S</RootNamespace>
     <Authors>Jason Thompson</Authors>
-    <Description>A .NET5 implementation of Steams A2S Server queries.</Description>
-    <Copyright />
+    <Description>A .NET implementation of Steams A2S Server queries using NET5</Description>
+    <Copyright>©2021 Jason Thompson</Copyright>
     <PackageProjectUrl>https://github.com/Crytilis/A2S</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Crytilis/A2S</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

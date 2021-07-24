@@ -8,11 +8,15 @@ using System.Text;
 
 namespace A2S
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class Players
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     {
         private static readonly byte[] Request = { 0xFF, 0xFF, 0xFF, 0xFF, 0x55, 0xFF, 0xFF, 0xFF, 0xFF };
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static Player[] PlayersArray;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
         private static byte Header { get; set; }
 
@@ -68,9 +72,13 @@ namespace A2S
             return PlayersArray;
         }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public struct Player
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
             public Player(ref BinaryReader binReader)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             {
                 Index = binReader.ReadByte();
                 Name = ReadNullTerminatedString(ref binReader);
@@ -78,12 +86,22 @@ namespace A2S
                 Duration = binReader.ReadSingle();
             }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
             public byte Index { get; set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
             public string Name { get; set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
             public int Score { get; set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
             public float Duration { get; set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
             public override string ToString()
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             {
                 return Name;
             }
