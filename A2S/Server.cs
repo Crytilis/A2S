@@ -157,7 +157,7 @@ namespace A2S
             public enum ServerTypeFlags : byte
             {
                 Dedicated = 0x64,
-                Nondedicated = 0x6C,
+                NonDedicated = 0x6C,
                 SourceTv = 0x70
             }
 
