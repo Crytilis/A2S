@@ -23,7 +23,4 @@ jobs:
       with:
           PROJECT_FILE_PATH: A2S/A2S.csproj
           PACKAGE_NAME: A2S
-          VERSION_REGEX: <Version>(.*)<\/Version>
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-          TAG_COMMIT: true
-          TAG_FORMAT: v*
