@@ -13,6 +13,13 @@ namespace A2S
 
         public static ServerInfo Info { get; set; }
 
+        /// <summary>
+        /// Queries the server and returns server information in accordance with A2S_Info.
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="port"></param>
+        /// <param name="timeout"></param>
+        /// <returns></returns>
         public static dynamic Query(string address, int port, int timeout)
         {
             var endPoint = new IPEndPoint(IPAddress.Parse(address), Convert.ToUInt16(port));
@@ -107,7 +114,7 @@ namespace A2S
                 }
             }
 
-            public byte Header { get; set; }
+            private byte Header { get; set; }
             public byte Protocol { get; set; }
             public string Name { get; set; }
             public string Map { get; set; }

@@ -14,8 +14,15 @@ namespace A2S
 
         public static Player[] PlayersArray;
 
-        public static byte Header { get; set; }
+        private static byte Header { get; set; }
 
+        /// <summary>
+        /// Queries the server and requests information on all connected players in accordance with A2S_Player.
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="port"></param>
+        /// <param name="timeout"></param>
+        /// <returns></returns>
         public static dynamic Query(string address, int port, int timeout)
         {
             var endPoint = new IPEndPoint(IPAddress.Parse(address), Convert.ToUInt16(port));
@@ -28,7 +35,7 @@ namespace A2S
                 try
                 {
                     byte[] challengeResponse = udpClient.EndReceive(asyncResult, ref endPoint);
-                    if (challengeResponse.Length == 9 && challengeResponse[4] == 0x41) //B
+                    if (challengeResponse.Length == 9 && challengeResponse[4] == 0x41)
                     {
                         challengeResponse[4] = 0x55;
                         udpClient.Send(challengeResponse, challengeResponse.Length, endPoint);
@@ -38,7 +45,10 @@ namespace A2S
                         Header = br.ReadByte();
                         PlayersArray = new Player[br.ReadByte()];
                         for (var i = 0; i < PlayersArray.Length; i++)
+                        {
                             PlayersArray[i] = new Player(ref br);
+                        }
+
                         br.Close();
                         ms.Close();
                     }
