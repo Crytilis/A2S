@@ -21,7 +21,7 @@ jobs:
     - name: Publish A2S
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
-          PROJECT_FILE_PATH: src/A2S/A2S.csproj
+          PROJECT_FILE_PATH: A2S/A2S.csproj
           PACKAGE_NAME: A2S
           VERSION_REGEX: <Version>(.*)<\/Version>
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
