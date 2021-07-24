@@ -1,3 +1,5 @@
+![Master](https://github.com/Crytilis/A2S/actions/workflows/main.yml/badge.svg?branch=master)
+
 ## A2S
 A .NET5 Implementation of Steam's A2S Source Server Queries. 
 
