@@ -12,7 +12,6 @@ namespace A2S
         private static readonly byte[] Request = { 0xFF, 0xFF, 0xFF, 0xFF, 0x54, 0x53, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x20, 0x45, 0x6E, 0x67, 0x69, 0x6E, 0x65, 0x20, 0x51, 0x75, 0x65, 0x72, 0x79, 0x00 };
 
         public static ServerInfo Info { get; set; }
-        public static bool TimedOut { get; set; }
 
         public Server()
         {
@@ -53,11 +52,9 @@ namespace A2S
                     return null;
                 }
             }
-            else
-            {
-                udpClient.Close();
-                return new TimeoutException("Operation timed out");
-            }
+
+            udpClient.Close();
+            return new TimeoutException("Operation timed out");
         }
 
         public struct ServerInfo
