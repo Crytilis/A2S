@@ -13,11 +13,6 @@ namespace A2S
 
         public static ServerInfo Info { get; set; }
 
-        public Server()
-        {
-            
-        }
-
         public static dynamic Query(string address, int port, int timeout)
         {
             var endPoint = new IPEndPoint(IPAddress.Parse(address), Convert.ToUInt16(port));
@@ -41,10 +36,10 @@ namespace A2S
                             receivedData = udpClient.EndReceive(receivedAsync, ref endPoint);
                         }
                     }
-                    var ms = new MemoryStream(receivedData);
-                    var br = new BinaryReader(ms, Encoding.UTF8);
-                    ms.Seek(4, SeekOrigin.Begin);
-                    Info = new ServerInfo(ref br);
+                    var memSteam = new MemoryStream(receivedData);
+                    var binReader = new BinaryReader(memSteam, Encoding.UTF8);
+                    memSteam.Seek(4, SeekOrigin.Begin);
+                    Info = new ServerInfo(ref binReader);
                     return Info;
                 }
                 catch (Exception)
@@ -55,7 +50,7 @@ namespace A2S
             }
 
             udpClient.Close();
-            return new TimeoutException("Operation timed out");
+            return new TimeoutException("Server failed to respond in the time allotted");
         }
 
         public struct ServerInfo
@@ -177,11 +172,11 @@ namespace A2S
         private static string ReadNullTerminatedString(ref BinaryReader input)
         {
             var sb = new StringBuilder();
-            var read = input.ReadChar();
-            while (read != '\x00')
+            var reader = input.ReadChar();
+            while (reader != '\x00')
             {
-                sb.Append(read);
-                read = input.ReadChar();
+                sb.Append(reader);
+                reader = input.ReadChar();
             }
 
             return sb.ToString();
