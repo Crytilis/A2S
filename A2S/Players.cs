@@ -19,9 +19,9 @@ namespace A2S
         /// <summary>
         /// Queries the server and requests information on all connected players in accordance with A2S_Player.
         /// </summary>
-        /// <param name="address"></param>
-        /// <param name="port"></param>
-        /// <param name="timeout"></param>
+        /// <param name="address">IP address of the server in string format</param>
+        /// <param name="port">Port of the server</param>
+        /// <param name="timeout">Timeout in seconds</param>
         /// <returns></returns>
         public static dynamic Query(string address, int port, int timeout)
         {
