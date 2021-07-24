@@ -25,20 +25,28 @@ namespace A2S
             asyncResult.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(timeout));
             if (asyncResult.IsCompleted)
             {
-                byte[] challengeResponse = udpClient.EndReceive(asyncResult, ref endPoint);
-                if (challengeResponse.Length == 9 && challengeResponse[4] == 0x41) //B
+                try
                 {
-                    challengeResponse[4] = 0x55;
-                    udpClient.Send(challengeResponse, challengeResponse.Length, endPoint);
-                    var ms = new MemoryStream(udpClient.Receive(ref endPoint));
-                    var br = new BinaryReader(ms, Encoding.UTF8);
-                    ms.Seek(4, SeekOrigin.Begin);
-                    Header = br.ReadByte();
-                    PlayersArray = new Player[br.ReadByte()];
-                    for (var i = 0; i < PlayersArray.Length; i++)
-                        PlayersArray[i] = new Player(ref br);
-                    br.Close();
-                    ms.Close();
+                    byte[] challengeResponse = udpClient.EndReceive(asyncResult, ref endPoint);
+                    if (challengeResponse.Length == 9 && challengeResponse[4] == 0x41) //B
+                    {
+                        challengeResponse[4] = 0x55;
+                        udpClient.Send(challengeResponse, challengeResponse.Length, endPoint);
+                        var ms = new MemoryStream(udpClient.Receive(ref endPoint));
+                        var br = new BinaryReader(ms, Encoding.UTF8);
+                        ms.Seek(4, SeekOrigin.Begin);
+                        Header = br.ReadByte();
+                        PlayersArray = new Player[br.ReadByte()];
+                        for (var i = 0; i < PlayersArray.Length; i++)
+                            PlayersArray[i] = new Player(ref br);
+                        br.Close();
+                        ms.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    udpClient.Close();
+                    return null;
                 }
             }
             else

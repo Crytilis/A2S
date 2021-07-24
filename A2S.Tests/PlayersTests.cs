@@ -15,7 +15,7 @@ namespace A2S.Tests
         [TestMethod()]
         public void QueryTest()
         {
-            var players = Players.Query("46.251.238.194", 27023, 15);
+            var players = Players.Query("46.251.238.194", 27023, 5);
             foreach (var player in players)
             {
                 if (player.Name != string.Empty)
@@ -26,7 +26,7 @@ namespace A2S.Tests
         [TestMethod()]
         public void QueryTestTimeout()
         {
-            var players = Players.Query("5.101.166.199", 27021, 15);
+            var players = Players.Query("5.101.166.199", 27021, 5);
             Console.WriteLine(players);
         }
     }
