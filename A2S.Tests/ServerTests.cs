@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace A2S.Tests
 {
@@ -9,38 +11,47 @@ namespace A2S.Tests
         [TestMethod()]
         public void QueryTest()
         {
-            var info = Server.Query("5.101.166.197", 27021, 15);
-            var response = $@"
-                Protocol: {info.Protocol}
-                Name: {info.Name}
-                Map: {info.Map}
-                Folder: {info.Folder}
-                Game: {info.Game}
-                ID: {info.Id}
-                Players: {info.Players}
-                Max Players: {info.MaxPlayers}
-                Bots: {info.Bots}
-                Server Type: {info.ServerType}
-                Environment: {info.Environment}
-                Visibility: {info.Visibility}
-                VAC: {info.Vac}
-                Version: {info.Version}
-                ExtraDataFlags:
-                    Port: {info.Port}
-                    SteamId: {info.SteamId}
-                    Spectator:
-                        Name: {info.Spectator}
-                        Port: {info.SpectatorPort}
-                    Keywords: {info.Keywords}
-                    GameId: {info.GameId}";
-            Console.WriteLine(response);
-        }
+            var serverDict = new Dictionary<string, int>
+            {
+                {"5.101.166.197", 27021},
+                {"5.101.166.199", 27021}
+            };
 
-        [TestMethod()]
-        public void QueryTestTimeout()
-        {
-            var info = Server.Query("5.101.166.199", 27021, 15);
-            Console.WriteLine(info);
+            foreach (var server in serverDict.Select(kvP => Server.Query(kvP.Key, kvP.Value, 5)))
+            {
+                if (server is not Exception)
+                {
+                    var response = $@"
+                Protocol: {server.Protocol}
+                Name: {server.Name}
+                Map: {server.Map}
+                Folder: {server.Folder}
+                Game: {server.Game}
+                ID: {server.Id}
+                Players: {server.Players}
+                Max Players: {server.MaxPlayers}
+                Bots: {server.Bots}
+                Server Type: {server.ServerType}
+                Environment: {server.Environment}
+                Visibility: {server.Visibility}
+                VAC: {server.Vac}
+                Version: {server.Version}
+                ExtraDataFlags:
+                    Port: {server.Port}
+                    SteamId: {server.SteamId}
+                    Spectator:
+                        Name: {server.Spectator}
+                        Port: {server.SpectatorPort}
+                    Keywords: {server.Keywords}
+                    GameId: {server.GameId}";
+
+                    Console.WriteLine($"Test #1:\n\t{response}");
+                }
+                else
+                {
+                    Console.WriteLine($"Test #2:\n\t{server}");
+                }
+            }
         }
     }
 }

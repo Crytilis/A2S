@@ -15,19 +15,32 @@ namespace A2S.Tests
         [TestMethod()]
         public void QueryTest()
         {
-            var players = Players.Query("46.251.238.194", 27023, 5);
-            foreach (var player in players)
+            var index = 0;
+            var serverDict = new Dictionary<string, int>
             {
-                if (player.Name != string.Empty)
-                    Console.WriteLine($"[Name] {player.Name}\n\t[Score] {player.Score}\n\t[Duration] {player.Duration}");
-            }
-        }
+                {"46.251.238.194", 27023},
+                {"46.251.235.194", 27021}
+            };
+            
+            foreach (var serverPlayers in serverDict.Select(kvP => Players.Query(kvP.Key, kvP.Value, 5)))
+            {
+                index++;
+                var response = string.Empty;
+                if (serverPlayers is not Exception)
+                {
+                    foreach (var player in serverPlayers)
+                    {
+                        if (!string.IsNullOrWhiteSpace(player.Name))
+                            response += $"[Name] {player.Name}\n\t[Score] {player.Score}\n\t[Duration] {player.Duration}\r\n\t\r\n\t";
+                    }
+                }
+                else
+                {
+                    response = serverPlayers.ToString();
+                }
 
-        [TestMethod()]
-        public void QueryTestTimeout()
-        {
-            var players = Players.Query("5.101.166.199", 27021, 5);
-            Console.WriteLine(players);
+                Console.WriteLine($"Test {index}:\n\t{response}");
+            }
         }
     }
 }
